@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - KongKang Corporation</title>
+  <meta name="viewport" content="width=900, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Prompt', 'Kanit', Arial, sans-serif;
+      background: #fdf6f9;
+      margin: 0;
+      color: #2d2320;
+    }
+    .checkout-container {
+      max-width: 900px;
+      margin: 48px auto 32px auto;
+      background: #fff;
+      border-radius: 32px;
+      box-shadow: 0 4px 32px #fbeee6aa;
+      display: flex;
+      gap: 0;
+      overflow: hidden;
+    }
+    .checkout-left, .checkout-right {
+      padding: 48px 36px;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .checkout-left {
+      background: #fff6f9;
+      border-right: 1.5px solid #fbeee6;
+    }
+    .checkout-title {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #a67c52;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .checkout-form label {
+      font-weight: 600;
+      color: #a67c52;
+      margin-bottom: 6px;
+      display: block;
+      font-size: 1.07em;
+    }
+    .checkout-form input, .checkout-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border-radius: 10px;
+      border: 1.5px solid #e7bfa7;
+      font-size: 1.08em;
+      background: #fff;
+      color: #2d2320;
+      transition: border 0.2s;
+    }
+    .checkout-form input:focus, .checkout-form textarea:focus {
+      border: 1.5px solid #a67c52;
+      outline: none;
+    }
+    .checkout-note {
+      font-size: 0.98em;
+      color: #b48c7d;
+      margin-top: -10px;
+      margin-bottom: 18px;
+    }
+    .checkout-right {
+      background: #fff;
+      min-width: 320px;
+    }
+    .order-summary-title {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #a67c52;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .order-list {
+      margin-bottom: 18px;
+    }
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #fbeee6;
+    }
+    .order-item:last-child {
+      border-bottom: none;
+    }
+    .order-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      object-fit: cover;
+      background: #fff6f9;
+      box-shadow: 0 2px 8px #fbeee6aa;
+    }
+    .order-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .order-name {
+      font-weight: 600;
+      color: #3a2c2a;
+      font-size: 1.07em;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .order-qty {
+      color: #b48c7d;
+      font-size: 0.98em;
+    }
+    .order-price {
+      color: #d4af37;
+      font-weight: 700;
+      font-size: 1.07em;
+      min-width: 70px;
+      text-align: right;
+    }
+    .order-total {
+      text-align: right;
+      font-weight: bold;
+      color: #d4af37;
+      font-size: 1.15em;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+    .checkout-btn {
+      background: linear-gradient(90deg, #f7cac9 0%, #e7bfa7 100%);
+      color: #a67c52;
+      border: none;
+      border-radius: 18px;
+      padding: 16px 0;
+      font-size: 1.15em;
+      font-weight: 700;
+      box-shadow: 0 2px 12px #e7bfa755;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .checkout-btn:hover {
+      background: linear-gradient(90deg, #e7bfa7 0%, #f7cac9 100%);
+      box-shadow: 0 4px 16px #e7bfa799;
+    }
+    .breadcrumbs {
+      max-width: 900px;
+      margin: 36px auto 0 auto;
+      font-size: 1.08em;
+      color: #b48c7d;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 1px;
+      padding-left: 8px;
+    }
+    .breadcrumbs .active {
+      color: #a67c52;
+      font-weight: 700;
+    }
+    @media (max-width: 900px) {
+      .checkout-container { flex-direction: column; border-radius: 0; }
+      .checkout-left, .checkout-right { padding: 32px 18px; }
+      .breadcrumbs { max-width: 100vw; }
+    }
+    @media (max-width: 600px) {
+      .checkout-left, .checkout-right { padding: 18px 4vw; }
+      .checkout-container { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="breadcrumbs">
+    <span>🛒 ตะกร้า</span> &gt;
+    <span class="active">📋 ข้อมูล</span> &gt;
+    <span>💳 ชำระเงิน</span>
+  </div>
+  <div class="checkout-container">
+    <!-- LEFT: FORM -->
+    <div class="checkout-left">
+      <div class="checkout-title">ข้อมูลสำหรับจัดส่ง</div>
+      <form class="checkout-form" id="checkoutForm">
+        <label for="name">ชื่อ-นามสกุล</label>
+        <input type="text" id="name" required>
+        <label for="phone">เบอร์โทรศัพท์</label>
+        <input type="tel" id="phone" required>
+        <label for="email">อีเมล</label>
+        <input type="email" id="email" required>
+        <label for="address">ที่อยู่จัดส่ง</label>
+        <textarea id="address" rows="3" required></textarea>
+        <label for="note">หมายเหตุ (ถ้ามี)</label>
+        <textarea id="note" rows="2"></textarea>
+        <div class="checkout-note">ข้อมูลของคุณจะถูกเก็บเป็นความลับ</div>
+        <button type="submit" class="checkout-btn">ยืนยันการสั่งซื้อ</button>
+      </form>
+    </div>
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="checkout-right">
+      <div class="order-summary-title">สรุปรายการสั่งซื้อ</div>
+      <div class="order-list" id="orderList"></div>
+      <div class="order-total" id="orderTotal"></div>
+    </div>
+  </div>
+  <script>
+    // --- แสดงสินค้าในตะกร้า ---
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('cart') || '[]'); } catch { return []; }
+    }
+    function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
+    function renderOrderSummary() {
+      const cart = getCart();
+      const orderList = document.getElementById('orderList');
+      const orderTotal = document.getElementById('orderTotal');
+      if (!cart.length) {
+        orderList.innerHTML = '<div style="color:#b48c7d;text-align:center;padding:32px 0;">ไม่มีสินค้าในตะกร้า</div>';
+        orderTotal.textContent = '';
+        document.querySelector('.checkout-btn').disabled = true;
+        return;
+      }
+      let total = 0;
+      orderList.innerHTML = cart.map(item => {
+        const sum = item.price * item.qty;
+        total += sum;
+        return `<div class="order-item">
+          <img src="${item.img}" class="order-img" alt="${item.name}">
+          <div class="order-info">
+            <div class="order-name">${item.name}</div>
+            <div class="order-qty">จำนวน: ${item.qty}</div>
+          </div>
+          <div class="order-price">${sum} บาท</div>
+        </div>`;
+      }).join('');
+      orderTotal.textContent = `รวมทั้งหมด: ${total} บาท`;
+      document.querySelector('.checkout-btn').disabled = false;
+    }
+    renderOrderSummary();
+
+    // --- ส่งฟอร์ม ---
+    document.getElementById('checkoutForm').onsubmit = function(e) {
+      e.preventDefault();
+      const cart = getCart();
+      if (!cart.length) return;
+      // เก็บข้อมูลลูกค้า (สามารถส่งไป backend ได้)
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const note = document.getElementById('note').value;
+      // สร้างหมายเลขคำสั่งซื้อ
+      const orderId = 'KK' + Date.now().toString().slice(-6);
+      // ไปหน้าชำระเงิน (หรือแสดงหน้าขอบคุณ)
+      localStorage.setItem('orderInfo', JSON.stringify({ name, phone, email, address, note, orderId }));
+      window.location.href = "payment.html";
+    };
+  </script>
+</body>
+</html>
