@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ชำระเงิน</title>
+    <style>
+        body { font-family: 'Segoe UI', 'Prompt', 'Kanit', Arial, sans-serif; background: #fdf6f9; margin: 0; }
+        .container { max-width: 600px; margin: 48px auto; background: #fff; border-radius: 24px; box-shadow: 0 4px 32px #fbeee6aa; padding: 32px 28px; }
+        h1 { color: #e7bfa7; font-size: 2em; margin-bottom: 24px; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+        .cart-table th, .cart-table td { padding: 10px 6px; border-bottom: 1px solid #fbeee6; }
+        .cart-table th { background: #fff6f9; color: #a67c52; }
+        .cart-table img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; }
+        .total-row td { font-weight: bold; color: #d4af37; }
+        .checkout-form label { display: block; margin-bottom: 6px; font-weight: 600; color: #a67c52; }
+        .checkout-form input, .checkout-form textarea { width: 100%; padding: 10px; margin-bottom: 14px; border-radius: 7px; border: 1.5px solid #e5e7eb; font-size: 1.08em; background: #fff; }
+        .checkout-form input:focus, .checkout-form textarea:focus { border: 1.5px solid #ff5b00; outline: none; }
+        .btn-confirm { background: linear-gradient(90deg, #f7cac9 0%, #fbeee6 100%); color: #a67c52; border: none; border-radius: 18px; padding: 12px 38px; font-size: 1.13em; font-weight: 600; cursor: pointer; transition: background 0.2s, box-shadow 0.2s; box-shadow: 0 2px 8px #e7bfa755; }
+        .btn-confirm:hover { background: linear-gradient(90deg, #fbeee6 0%, #f7cac9 100%); box-shadow: 0 4px 16px #e7bfa799; }
+        .btn-cancel { border: none; border-radius: 7px; padding: 12px 38px; font-size: 1.13em; cursor: pointer; background: #e5e7eb; color: #222; font-weight: 600; margin-left: 12px; transition: background 0.2s; }
+        .btn-cancel:hover { background: #d1d5db; }
+        #qrSection { background: #fff; border-radius: 10px; border: 1.5px solid #ececec; padding: 18px 0 10px 0; margin-bottom: 18px; text-align: center; }
+        #qrSection img { width: 180px; height: 180px; border-radius: 12px; border: 1.5px solid #ececec; background: #fafafa; }
+        #qrSection div { color: #555; margin-top: 10px; font-size: 1.05em; }
+        .empty-cart { text-align: center; color: #aaa; padding: 48px 0; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ชำระเงิน</h1>
+    <div id="cartSection"></div>
+    <form class="checkout-form" id="checkoutForm" style="display:none;">
+        <label for="name">ชื่อ-นามสกุล</label>
+        <input type="text" id="name" required>
+        <label for="address">ที่อยู่สำหรับจัดส่ง</label>
+        <textarea id="address" rows="3" required></textarea>
+        <label for="phone">เบอร์โทรศัพท์</label>
+        <input type="text" id="phone" required>
+        <label>ช่องทางการชำระเงิน</label>
+        <div style="margin-bottom:16px;">
+            <input type="radio" id="pay-bank" name="payment" value="bank" checked>
+            <label for="pay-bank">โอนผ่านบัญชีธนาคาร</label><br>
+            <input type="radio" id="pay-qr" name="payment" value="qr">
+            <label for="pay-qr">สแกนจ่ายด้วย QR Code</label>
+        </div>
+        <div id="qrSection" style="display:none;">
+            <img src="https://promptpay.io/0624689489/100.png" alt="QR Code">
+            <div>สแกนเพื่อชำระเงินผ่าน PromptPay</div>
+        </div>
+        <label for="slip">แนบสลิปการโอนเงิน <span style="color:#ef4444;">*</span></label>
+        <input type="file" id="slip" accept="image/*" required style="margin-bottom:16px;">
+        <button type="submit" class="btn-confirm">ยืนยันการสั่งซื้อ</button>
+        <button type="button" class="btn-cancel" onclick="window.location.href='Product.html'">ยกเลิก</button>
+    </form>
+</div>
+<script>
+function getCart() {
+    try { return JSON.parse(localStorage.getItem('cart') || '[]'); } catch { return []; }
+}
+function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
+function renderCart() {
+    const cart = getCart();
+    const cartSection = document.getElementById('cartSection');
+    const form = document.getElementById('checkoutForm');
+    if (!cart.length) {
+        cartSection.innerHTML = '<div class="empty-cart">ไม่มีสินค้าในตะกร้า</div>';
+        form.style.display = 'none';
+        return;
+    }
+    let total = 0;
+    let html = `<table class="cart-table"><thead><tr>
+        <th>สินค้า</th><th>ชื่อสินค้า</th><th>ราคา</th><th>จำนวน</th><th>รวม</th>
+    </tr></thead><tbody>`;
+    cart.forEach(item => {
+        const sum = parseFloat(item.price) * item.qty;
+        total += sum;
+        html += `<tr>
+            <td><img src="${item.img}" alt="${item.name}"></td>
+            <td>${item.name}</td>
+            <td>${item.price} บาท</td>
+            <td>${item.qty}</td>
+            <td>${sum} บาท</td>
+        </tr>`;
+    });
+    html += `<tr class="total-row"><td colspan="4" style="text-align:right;">รวมทั้งหมด</td><td>${total} บาท</td></tr></tbody></table>`;
+    cartSection.innerHTML = html;
+    form.style.display = '';
+    // อัปเดต QR Code
+    const qrImg = document.querySelector('#qrSection img');
+    if (qrImg) {
+        const promptpayNumber = "0624689489";
+        qrImg.src = `https://promptpay.io/${promptpayNumber}/${total}.png`;
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    renderCart();
+    // QR toggle
+    const qrRadio = document.getElementById('pay-qr');
+    const bankRadio = document.getElementById('pay-bank');
+    const qrSection = document.getElementById('qrSection');
+    function toggleQR() { qrSection.style.display = qrRadio.checked ? 'block' : 'none'; }
+    qrRadio.addEventListener('change', toggleQR);
+    bankRadio.addEventListener('change', toggleQR);
+    toggleQR();
+});
+document.getElementById('checkoutForm').onsubmit = function(e) {
+    e.preventDefault();
+    const cart = getCart();
+    let total = 0;
+    cart.forEach(item => { total += parseFloat(item.price) * item.qty; });
+    const slip = document.getElementById('slip').files[0];
+    if (!slip) { alert('กรุณาแนบสลิปการโอนเงิน'); return; }
+    const orderId = 'KK' + Date.now().toString().slice(-6);
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+    document.body.innerHTML = `
+        <div class="container" style="text-align:center;max-width:500px;margin:60px auto;">
+            <h1 style="color:#16a34a;">ขอบคุณสำหรับการสั่งซื้อ!</h1>
+            <div style="font-size:1.2em;margin:24px 0;">
+                หมายเลขคำสั่งซื้อ: <b>${orderId}</b><br>
+                ชื่อ: ${name}<br>
+                ที่อยู่: ${address.replace(/\n/g,'<br>')}<br>
+                เบอร์โทร: ${phone}
+            </div>
+            <div style="color:#888;margin-bottom:24px;">ระบบจะพาคุณกลับไปหน้าสินค้าใน <span id="countdown">20</span> วินาที</div>
+            <a href="Product.html" class="btn-confirm" style="text-decoration:none;">กลับไปหน้าสินค้า</a>
+        </div>
+    `;
+    setCart([]);
+    let sec = 20;
+    const countdown = setInterval(() => {
+        sec--;
+        const el = document.getElementById('countdown');
+        if (el) el.textContent = sec;
+        if (sec <= 0) {
+            clearInterval(countdown);
+            window.location.href = "Product.html";
+        }
+    }, 1000);
+};
+</script>
+</body>
+</html>

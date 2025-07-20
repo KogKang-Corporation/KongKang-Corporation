@@ -1,17 +1,868 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>เพิ่มประกายให้วันของคุณ - KongKang Corporation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Prompt', 'Kanit', Arial, sans-serif;
+            background: #fdf6f9;
+            margin: 0;
+            padding: 0;
+            color: #2d2320; /* สีเข้มขึ้น */
+        }
+        .hero {
+            background: linear-gradient(120deg, #fff6f9 60%, #fbeee6 100%);
+            padding: 0 0 48px 0;
+            box-shadow: 0 4px 32px 0 rgba(230, 200, 180, 0.10);
+            border-bottom-left-radius: 48px;
+            border-bottom-right-radius: 48px;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 48px 40px 0 40px;
+        }
+        .hero-text {
+            flex: 1;
+            z-index: 2;
+        }
+        .hero-title {
+            font-size: 2.8em;
+            font-weight: 800;
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            text-shadow: none;
+        }
+        .hero-desc {
+            font-size: 1.25em;
+            color: #4b3a2f !important; /* น้ำตาลเข้มปานกลาง */
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+        .hero-btn {
+            background: linear-gradient(90deg, #f7cac9 0%, #fbeee6 100%);
+            color: #a67c52;
+            border: none;
+            border-radius: 32px;
+            padding: 18px 54px;
+            font-size: 1.25em;
+            font-weight: 700;
+            box-shadow: 0 4px 24px #e7bfa755;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .hero-btn:hover {
+            background: linear-gradient(90deg, #fbeee6 0%, #f7cac9 100%);
+            box-shadow: 0 8px 32px #e7bfa799;
+        }
+        .hero-images {
+            flex: 1.2;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 0;
+            z-index: 1;
+        }
+        .marble-bg {
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            border-radius: 32px;
+            width: 420px;
+            height: 260px;
+            position: relative;
+            box-shadow: 0 8px 32px #e7bfa7aa;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .hero-img-necklace {
+            position: absolute;
+            left: 40px;
+            bottom: 30px;
+            width: 120px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #e7bfa7aa;
+            border: 4px solid #fff8;
+            background: #fff;
+        }
+        .hero-img-phone {
+            position: absolute;
+            right: 40px;
+            bottom: 40px;
+            width: 90px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #e7bfa7aa;
+            border: 4px solid #fff8;
+            background: #fff;
+        }
+        /* About Section */
+        .about-section {
+            max-width: 1100px;
+            margin: 56px auto 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            background: #fff;
+            border-radius: 32px;
+            box-shadow: 0 4px 32px #fbeee6aa;
+            padding: 40px 48px;
+        }
+        .about-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px #f7cac955;
+            border: 4px solid #fff6f9;
+        }
+        .about-content {
+            flex: 1;
+        }
+        .about-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+            margin-bottom: 12px;
+        }
+        .about-desc {
+            font-size: 1.1em;
+            color: #4b3a2f !important; /* น้ำตาลเข้มปานกลาง */
+            line-height: 1.7;
+        }
+        /* Catalog Layout */
+        .catalog-section {
+            max-width: 1200px;
+            margin: 64px auto 32px auto;
+            display: flex;
+            gap: 40px;
+        }
+        .catalog-menu {
+            width: 220px;
+            background: #fff6f9;
+            border-radius: 24px;
+            box-shadow: 0 2px 12px #fbeee6aa;
+            padding: 32px 0 32px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: stretch;
+            height: fit-content;
+        }
+        .catalog-menu-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .catalog-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.08em;
+            color: #3a2c2a !important;
+            padding: 12px 0;
+            border-radius: 18px 0 0 18px;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.18s, color 0.18s;
+        }
+        .catalog-menu-btn.active, .catalog-menu-btn:hover {
+            background: linear-gradient(90deg, #fbeee6 60%, #fff 100%);
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+        }
+        .catalog-products {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+        .product-detail-card {
+            background: #fff;
+            border-radius: 28px;
+            box-shadow: 0 4px 32px #fbeee6cc;
+            display: flex;
+            gap: 36px;
+            padding: 36px 40px;
+            align-items: flex-start;
+        }
+        .product-detail-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #f7cac955;
+            border: 4px solid #fff6f9;
+            background: #fff6f9;
+        }
+        .product-detail-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .product-detail-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+        }
+        .product-detail-desc {
+            font-size: 1.08em;
+            color: #4b3a2f !important; /* น้ำตาลเข้มปานกลาง */
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .product-detail-price {
+            font-size: 1.3em;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .product-detail-options {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .color-option {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #e7bfa7;
+            margin-right: 8px;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 1px 4px #fbeee6aa;
+        }
+        .color-option.selected {
+            border: 3px solid #d4af37;
+            box-shadow: 0 2px 8px #d4af3744;
+        }
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .qty-btn {
+            background: #f7cac9;
+            border: none;
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            color: #a67c52;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.18s;
+        }
+        .qty-btn:hover {
+            background: #fbeee6;
+        }
+        .qty-input {
+            width: 48px;
+            text-align: center;
+            font-size: 1.1em;
+            border: 1.5px solid #e7bfa7;
+            border-radius: 8px;
+            padding: 4px 0;
+            background: #fff6f9;
+            color: #a67c52;
+        }
+        .product-detail-actions {
+            margin-top: 18px;
+            display: flex;
+            gap: 18px;
+        }
+        .btn-main {
+            background: linear-gradient(90deg, #f7cac9 0%, #fbeee6 100%);
+            color: #a67c52;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 38px;
+            font-size: 1.1em;
+            font-weight: 700;
+            box-shadow: 0 2px 12px #e7bfa755;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .btn-main:hover {
+            background: linear-gradient(90deg, #fbeee6 0%, #f7cac9 100%);
+            box-shadow: 0 4px 16px #e7bfa799;
+        }
+        .related-products {
+            margin-top: 24px;
+        }
+        .related-title {
+            font-size: 1.08em;
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .related-list {
+            display: flex;
+            gap: 18px;
+        }
+        .related-card {
+            background: #fff6f9;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px #fbeee6aa;
+            padding: 12px 10px;
+            width: 110px;
+            text-align: center;
+            font-size: 0.98em;
+            color: #a67c52;
+        }
+        .related-card img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            background: #fff;
+        }
+        .product-showcase-section {
+            max-width: 1200px;
+            margin: 56px auto 0 auto;
+            padding: 0 24px 24px 24px;
+        }
+        .showcase-title {
+            font-size: 1.45em;
+            font-weight: 700;
+            color: #a67c52 !important; /* น้ำตาลเข้ม อ่านง่าย */
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            margin-bottom: 8px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 24px #fbeee6aa;
+            padding: 24px 18px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: box-shadow 0.18s;
+        }
+        .product-card.highlight {
+            box-shadow: 0 8px 32px #e7bfa7cc;
+            border: 2px solid #f7cac9;
+        }
+        .product-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            background: #fff6f9;
+            box-shadow: 0 2px 12px #fbeee6aa;
+        }
+        .product-name {
+            font-size: 1.08em;
+            font-weight: 600;
+            color: #a67c52;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .product-price {
+            font-size: 1.1em;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .btn-buy {
+            background: linear-gradient(90deg, #f7cac9 0%, #fbeee6 100%);
+            color: #a67c52;
+            border: none;
+            border-radius: 18px;
+            padding: 10px 32px;
+            font-size: 1.08em;
+            font-weight: 700;
+            box-shadow: 0 2px 8px #e7bfa755;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .btn-buy:hover {
+            background: linear-gradient(90deg, #fbeee6 0%, #f7cac9 100%);
+            box-shadow: 0 4px 16px #e7bfa799;
+        }
+        .badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.98em;
+            font-weight: 700;
+            color: #fff !important;
+            z-index: 2;
+            box-shadow: 0 2px 8px #f7cac955;
+            letter-spacing: 1px;
+        }
+        .badge-recommend {
+            background: linear-gradient(90deg, #f7cac9 0%, #e7bfa7 100%);
+        }
+        .badge-hit {
+            background: linear-gradient(90deg, #e7bfa7 0%, #d4af37 100%);
+        }
+        @media (max-width: 1100px) {
+            .hero-content, .about-section, .catalog-section {
+                flex-direction: column;
+                padding: 24px 10vw;
+                gap: 32px;
+            }
+            .hero-images, .marble-bg {
+                width: 100%;
+                min-width: 320px;
+            }
+            .catalog-section {
+                flex-direction: column;
+            }
+            .catalog-menu {
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                border-radius: 24px;
+                padding: 18px 0;
+            }
+        }
+        @media (max-width: 700px) {
+            .hero-content, .about-section, .catalog-section {
+                padding: 12px 2vw;
+            }
+            .product-detail-card {
+                flex-direction: column;
+                align-items: center;
+                padding: 18px 8px;
+            }
+            .catalog-menu {
+                flex-direction: row;
+                gap: 8px;
+                width: 100%;
+                border-radius: 18px;
+            }
+        }
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* POPUP CART STYLES */
+.cart-modal-bg {
+    position: fixed; z-index: 9999; left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center;
+}
+.cart-modal {
+    background: #fff; border-radius: 24px; box-shadow: 0 8px 32px #e7bfa7cc;
+    width: 480px; max-width: 96vw; padding: 0 0 18px 0; display: flex; flex-direction: column;
+}
+.cart-modal-header {
+    padding: 18px 28px 12px 28px; font-size: 1.3em; font-weight: 700; color: #e7bfa7; display: flex; justify-content: space-between; align-items: center;
+}
+.cart-modal-close {
+    background: none; border: none; font-size: 1.6em; color: #b48c7d; cursor: pointer;
+}
+.cart-modal-body {
+    max-height: 320px; overflow-y: auto; padding: 0 28px;
+}
+.cart-modal-footer {
+    display: flex; justify-content: flex-end; gap: 12px; padding: 12px 28px 0 28px;
+}
+.cart-modal-item {
+    display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #fbeee6; padding: 14px 0;
+}
+.cart-modal-item img {
+    width: 56px; height: 56px; object-fit: cover; border-radius: 12px; background: #fff6f9;
+}
+.cart-modal-item-info {
+    flex: 1;
+}
+.cart-modal-item-name {
+    font-weight: 600; color: #a67c52; font-size: 1.08em;
+}
+.cart-modal-item-price {
+    color: #d4af37; font-weight: 700; font-size: 1em;
+}
+.cart-modal-item-qty {
+    font-size: 1em; color: #b48c7d;
+}
+.cart-modal-total {
+    text-align: right; font-weight: bold; color: #d4af37; margin-top: 10px; font-size: 1.1em;
+}
+.btn-cancel {
+    border: none; border-radius: 7px; padding: 10px 32px; font-size: 1.08em; cursor: pointer;
+    background: #e5e7eb; color: #222; font-weight: 600; transition: background 0.2s;
+}
+.btn-cancel:hover { background: #d1d5db; }
+    </style>
 </head>
 <body>
-<<<<<<< HEAD
-    <label>สวัสดีจ้า</label>
-=======
-    <img src="../img/test.webp" alt="KongKang Corporation Logo" style="width: 200px; height: auto;">
->>>>>>> c3cbec0410aff8426691530668afacc7c9ffa597
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-title">เพิ่มประกายให้วันของคุณ</div>
+                <div class="hero-desc">เครื่องประดับและของตกแต่งน่ารัก ดีไซน์เรียบหรู โทนสีพาสเทลสำหรับทุกวันพิเศษ</div>
+                <button class="hero-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">สั่งซื้อเลย</button>
+            </div>
+            <div class="hero-images">
+                <div class="marble-bg">
+                    <img src="image/D1.JPG" class="hero-img-necklace" alt="สร้อยบนหินอ่อน">
+                    <img src="image/D10.jpg" class="hero-img-phone" alt="ที่ห้อยโทรศัพท์บนหินอ่อน">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT SECTION -->
+    <div class="about-section">
+        <img src="image/J1.JPG" class="about-img" alt="ทีมงาน KongKang">
+        <div class="about-content">
+            <div class="about-title">เกี่ยวกับเรา</div>
+            <div class="about-desc">
+                KongKang Corporation คัดสรรเครื่องประดับและของตกแต่งสุดน่ารัก สไตล์พาสเทล เรียบหรู ดูดี เหมาะกับทุกโอกาส<br>
+                เราใส่ใจในรายละเอียดทุกชิ้น เพื่อให้คุณมั่นใจในคุณภาพและความสวยงาม
+            </div>
+        </div>
+    </div>
+    <!-- CATALOG SECTION -->
+    <div class="catalog-section" id="catalog">
+        <div class="catalog-menu">
+            <div class="catalog-menu-title">หมวดหมู่</div>
+            <button class="catalog-menu-btn active" onclick="showCategory('necklace', event)">สร้อย</button>
+            <button class="catalog-menu-btn" onclick="showCategory('phone', event)">ที่ห้อยโทรศัพท์</button>
+        </div>
+        <div class="catalog-products" id="catalogProducts">
+            <!-- Product detail card will be rendered here -->
+        </div>
+    </div>
+    <div class="product-showcase-section" style="max-width:1200px;margin:56px auto 0 auto;">
+        <!-- สินค้าแนะนำ -->
+        <div class="showcase-title">สินค้าแนะนำ</div>
+        <div class="product-grid">
+            <!-- สินค้าแนะนำ -->
+            <div class="product-card highlight">
+                <div class="badge badge-recommend">แนะนำ</div>
+                <img src="image/D1.JPG" alt="สร้อยไข่มุกน้ำจืดแท้">
+                <div class="product-name">สร้อยไข่มุกน้ำจืดแท้</div>
+                <div class="product-price">590 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยไข่มุกน้ำจืดแท้')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D10.jpg" alt="ที่ห้อยโทรศัพท์ลูกปัด">
+                <div class="product-name">ที่ห้อยโทรศัพท์ลูกปัด</div>
+                <div class="product-price">99 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('ที่ห้อยโทรศัพท์ลูกปัด')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D2.jpg" alt="สร้อยเงินแท้ 92.5%">
+                <div class="product-name">สร้อยเงินแท้ 92.5%</div>
+                <div class="product-price">450 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยเงินแท้ 92.5%')">ดูรายละเอียด</button>
+            </div>
+        </div>
+        <!-- สินค้ายอดนิยม -->
+        <div class="showcase-title" style="margin-top:40px;">สินค้ายอดนิยม</div>
+        <div class="product-grid">
+            <div class="product-card highlight">
+                <div class="badge badge-hit">ฮิต</div>
+                <img src="image/D4.jpg" alt="สร้อยจี้หัวใจ">
+                <div class="product-name">สร้อยจี้หัวใจ</div>
+                <div class="product-price">350 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยจี้หัวใจ')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D11.jpg" alt="ที่ห้อยโทรศัพท์สายหนัง">
+                <div class="product-name">ที่ห้อยโทรศัพท์สายหนัง</div>
+                <div class="product-price">150 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('ที่ห้อยโทรศัพท์สายหนัง')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D6.JPG" alt="สร้อยจี้ดาวเงิน">
+                <div class="product-name">สร้อยจี้ดาวเงิน</div>
+                <div class="product-price">320 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยจี้ดาวเงิน')">ดูรายละเอียด</button>
+            </div>
+        </div>
+    </div>
+    <!-- POPUP CART MODAL -->
+<div id="cartModal" class="cart-modal-bg" style="display:none;">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <span>ตะกร้าสินค้า</span>
+      <button class="cart-modal-close" onclick="closeCartModal()">×</button>
+    </div>
+    <div class="cart-modal-body" id="cartModalBody"></div>
+    <div class="cart-modal-footer">
+      <button class="btn-main" onclick="goToCheckout()">ชำระเงิน</button>
+      <button class="btn-cancel" onclick="closeCartModal()">ปิด</button>
+    </div>
+  </div>
+</div>
+<script>
+    // --- DATA ---
+    const allProducts = [
+        // สร้อย
+        {
+            name: "สร้อยไข่มุกน้ำจืดแท้",
+            desc: "สร้อยไข่มุกน้ำจืดแท้ สีขาวเงางาม ดีไซน์เรียบหรู ใส่ได้ทุกโอกาส",
+            price: 590,
+            img: "image/D1.JPG",
+            colors: ["#fff", "#f7cac9", "#e7bfa7"],
+            category: "necklace",
+            related: ["สร้อยเงินแท้ 92.5%", "สร้อยจี้หัวใจ"]
+        },
+        {
+            name: "สร้อยเงินแท้ 92.5%",
+            desc: "สร้อยเงินแท้ 92.5% ดีไซน์เรียบง่าย เหมาะกับทุกสไตล์",
+            price: 450,
+            img: "image/D2.jpg",
+            colors: ["#e7bfa7", "#fff"],
+            category: "necklace",
+            related: ["สร้อยไข่มุกน้ำจืดแท้", "สร้อยจี้ดาวเงิน"]
+        },
+        {
+            name: "สร้อยจี้หัวใจ",
+            desc: "สร้อยพร้อมจี้หัวใจสีทอง เหมาะเป็นของขวัญให้คนพิเศษ",
+            price: 350,
+            img: "image/D4.jpg",
+            colors: ["#f7cac9", "#fff6f9"],
+            category: "necklace",
+            related: ["สร้อยไข่มุกน้ำจืดแท้", "สร้อยเงินแท้ 92.5%"]
+        },
+        {
+            name: "สร้อยจี้ดาวเงิน",
+            desc: "สร้อยพร้อมจี้รูปดาวเงิน เพิ่มเสน่ห์ให้กับผู้สวมใส่",
+            price: 320,
+            img: "image/D6.JPG",
+            colors: ["#fff", "#e7bfa7"],
+            category: "necklace",
+            related: ["สร้อยเงินแท้ 92.5%", "สร้อยจี้หัวใจ"]
+        },
+        // ที่ห้อยโทรศัพท์
+        {
+            name: "ที่ห้อยโทรศัพท์ลูกปัด",
+            desc: "ที่ห้อยโทรศัพท์ลูกปัดสีพาสเทลสดใส น่ารัก",
+            price: 99,
+            img: "image/D10.jpg",
+            colors: ["#f7cac9", "#fff6f9", "#e7bfa7"],
+            category: "phone",
+            related: ["ที่ห้อยโทรศัพท์สายหนัง", "ที่ห้อยโทรศัพท์ลายการ์ตูน"]
+        },
+        {
+            name: "ที่ห้อยโทรศัพท์สายหนัง",
+            desc: "ที่ห้อยโทรศัพท์สายหนังแท้ ทนทาน",
+            price: 150,
+            img: "image/D11.jpg",
+            colors: ["#e7bfa7", "#fff"],
+            category: "phone",
+            related: ["ที่ห้อยโทรศัพท์ลูกปัด", "ที่ห้อยโทรศัพท์ลายการ์ตูน"]
+        },
+        {
+            name: "ที่ห้อยโทรศัพท์ลายการ์ตูน",
+            desc: "ที่ห้อยโทรศัพท์ลายการ์ตูนสุดคิ้วท์",
+            price: 120,
+            img: "D12.jpg",
+            colors: ["#f7cac9", "#fff6f9"],
+            category: "phone",
+            related: ["ที่ห้อยโทรศัพท์ลูกปัด", "ที่ห้อยโทรศัพท์สายหนัง"]
+        }
+    ];
+
+    let currentCategory = "necklace";
+    let currentProduct = null;
+
+    function showCategory(cat, e) {
+        if (e) {
+            document.querySelectorAll('.catalog-menu-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+        }
+        currentCategory = cat;
+        // แสดงสินค้าชิ้นแรกในหมวด
+        const first = allProducts.find(p => p.category === cat);
+        if (first) showProductDetail(first.name);
+    }
+
+    function showProductDetail(name) {
+        const product = allProducts.find(p => p.name === name);
+        if (!product) return;
+        currentProduct = product;
+        let colorOptions = '';
+        product.colors.forEach((c, i) => {
+            colorOptions += `<span class="color-option${i===0?' selected':''}" style="background:${c}" onclick="selectColor(this)"></span>`;
+        });
+        let relatedHtml = '';
+        if (product.related && product.related.length) {
+            relatedHtml = `<div class="related-products">
+                <div class="related-title">สินค้าที่เกี่ยวข้อง</div>
+                <div class="related-list">
+                    ${product.related.map(rn => {
+                        const rp = allProducts.find(p => p.name === rn);
+                        return rp ? `<div class="related-card" onclick="showProductDetail('${rp.name}')">
+                            <img src="${rp.img}" alt="${rp.name}">
+                            ${rp.name}
+                        </div>` : '';
+                    }).join('')}
+                </div>
+            </div>`;
+        }
+        // ตัวอย่างรีวิว
+    let reviews = [
+        { name: "Nina", text: "สินค้าน่ารักมาก ส่งไว คุณภาพดี!", rating: 5 },
+        { name: "Ploy", text: "สีสวยตรงปก ใส่แล้วดูดีค่ะ", rating: 4 },
+        { name: "Mint", text: "แพ็คของดีมาก ประทับใจ", rating: 5 }
+    ];
+    let reviewHtml = `<div style="margin:18px 0 0 0;">
+        <div style="font-weight:600;color:#e7bfa7;margin-bottom:8px;">รีวิวจากลูกค้า</div>
+        ${reviews.map(r=>`
+            <div style="background:#fff6f9;border-radius:12px;padding:10px 14px;margin-bottom:8px;box-shadow:0 1px 6px #fbeee633;">
+                <span style="color:#fbbf24;font-size:1.1em;">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+                <span style="font-weight:500;color:#a67c52;">${r.name}</span>
+                <div style="color:#b48c7d;font-size:0.98em;">${r.text}</div>
+            </div>
+        `).join('')}
+    </div>`;
+        document.getElementById('catalogProducts').innerHTML = `
+            <div class="product-detail-card">
+                <img src="${product.img}" class="product-detail-img" alt="${product.name}">
+                <div class="product-detail-info">
+                    <div class="product-detail-name">${product.name}</div>
+                    <div class="product-detail-desc">${product.desc}</div>
+                    <div class="product-detail-price">${product.price} บาท</div>
+                    <div class="product-detail-options">
+                        <div>
+                            <span style="font-weight:600;">เลือกสี:</span>
+                            ${colorOptions}
+                        </div>
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="changeQty(-1)" type="button">-</button>
+                            <input type="number" class="qty-input" id="qtyInput" value="1" min="1">
+                            <button class="qty-btn" onclick="changeQty(1)" type="button">+</button>
+                        </div>
+                    </div>
+                    <div class="product-detail-actions">
+                        <button class="btn-main" onclick="addToCartDetail()">เพิ่มเข้าตะกร้า</button>
+                        <button class="btn-main" onclick="buyNowDetail()">สั่งซื้อ</button>
+                    </div>
+                    ${reviewHtml}
+                    ${relatedHtml}
+                </div>
+            </div>
+        `;
+    }
+
+    function selectColor(el) {
+        document.querySelectorAll('.color-option').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+    function changeQty(delta) {
+        const input = document.getElementById('qtyInput');
+        let val = parseInt(input.value) || 1;
+        val += delta;
+        if (val < 1) val = 1;
+        input.value = val;
+    }
+
+    // ตะกร้าสินค้า (localStorage)
+    function getCart() {
+        try {
+            return JSON.parse(localStorage.getItem('cart') || '[]');
+        } catch { return []; }
+    }
+    function setCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function addToCartDetail() {
+        if (!currentProduct) return;
+        const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+        let cart = getCart();
+        // เช็คสินค้าที่มีอยู่ในตะกร้า
+        const existing = cart.find(item => item.name === currentProduct.name);
+        if (existing) {
+            // ถ้ามีอยู่แล้ว ให้เพิ่มจำนวน
+            existing.qty += qty;
+        } else {
+            // ถ้ายังไม่มี ให้เพิ่มสินค้าลงไปในตะกร้า
+            cart.push({ ...currentProduct, qty });
+        }
+        setCart(cart);
+        alert('เพิ่มสินค้าลงในตะกร้าเรียบร้อยแล้ว');
+    }
+    function buyNowDetail() {
+        if (!currentProduct) return;
+        const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+        let cart = getCart();
+        // เช็คสินค้าที่มีอยู่ในตะกร้า
+        const existing = cart.find(item => item.name === currentProduct.name);
+        if (existing) {
+            // ถ้ามีอยู่แล้ว ให้เพิ่มจำนวน
+            existing.qty += qty;
+        } else {
+            // ถ้ายังไม่มี ให้เพิ่มสินค้าลงไปในตะกร้า
+            cart.push({ ...currentProduct, qty });
+        }
+        setCart(cart);
+        // เปลี่ยนเส้นทางไปยังหน้าชำระเงิน (checkout)
+        window.location.href = 'checkout.html';
+    }
+
+    // POPUP CART
+function openCartModal() {
+    renderCartModal();
+    document.getElementById('cartModal').style.display = 'flex';
+}
+function closeCartModal() {
+    document.getElementById('cartModal').style.display = 'none';
+}
+function renderCartModal() {
+    const cart = getCart();
+    const body = document.getElementById('cartModalBody');
+    if (!cart.length) {
+        body.innerHTML = '<div style="text-align:center;color:#aaa;padding:48px 0;">ไม่มีสินค้าในตะกร้า</div>';
+        return;
+    }
+    let html = '';
+    let total = 0;
+    cart.forEach(item => {
+        const sum = item.price * item.qty;
+        total += sum;
+        html += `
+        <div class="cart-modal-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="cart-modal-item-info">
+                <div class="cart-modal-item-name">${item.name}</div>
+                <div class="cart-modal-item-price">${item.price} บาท</div>
+                <div class="cart-modal-item-qty">จำนวน: ${item.qty}</div>
+            </div>
+        </div>`;
+    });
+    html += `<div class="cart-modal-total">รวมทั้งหมด: ${total} บาท</div>`;
+    body.innerHTML = html;
+}
+function goToCheckout() {
+    closeCartModal();
+    window.location.href = "Checkout.html"; // เปลี่ยนจาก Bug.html เป็น Checkout.html
+}
+// เชื่อมเมนูตะกร้าสินค้า
+document.querySelectorAll('.cart-link').forEach(el => {
+    el.onclick = function(e) { e.preventDefault(); openCartModal(); };
+});
+    // แสดงสินค้าชิ้นแรกในหมวดหมู่เริ่มต้น
+    showCategory(currentCategory);
+    </script>
 </body>
 </html>
-
-
