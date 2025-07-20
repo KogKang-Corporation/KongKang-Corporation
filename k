@@ -1,1 +1,1 @@
-deka   ewokr
+deka   ewokr ฟหกฟหกฟ
