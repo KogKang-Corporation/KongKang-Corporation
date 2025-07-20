@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title>Bookly - Bookstore eCommerce Website Template</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -510,8 +532,11 @@
 }
 .btn-cancel:hover { background: #d1d5db; }
     </style>
+
 </head>
+
 <body>
+
     <!-- HERO SECTION -->
     <div class="hero">
         <div class="hero-content">
@@ -864,5 +889,510 @@ document.querySelectorAll('.cart-link').forEach(el => {
     // แสดงสินค้าชิ้นแรกในหมวดหมู่เริ่มต้น
     showCategory(currentCategory);
     </script>
+
+
+
+
+
+
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-title">เพิ่มประกายให้วันของคุณ</div>
+                <div class="hero-desc">เครื่องประดับและของตกแต่งน่ารัก ดีไซน์เรียบหรู โทนสีพาสเทลสำหรับทุกวันพิเศษ</div>
+                <button class="hero-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">สั่งซื้อเลย</button>
+            </div>
+            <div class="hero-images">
+                <div class="marble-bg">
+                    <img src="image/D1.JPG" class="hero-img-necklace" alt="สร้อยบนหินอ่อน">
+                    <img src="image/D10.jpg" class="hero-img-phone" alt="ที่ห้อยโทรศัพท์บนหินอ่อน">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT SECTION -->
+    <div class="about-section">
+        <img src="image/J1.JPG" class="about-img" alt="ทีมงาน KongKang">
+        <div class="about-content">
+            <div class="about-title">เกี่ยวกับเรา</div>
+            <div class="about-desc">
+                KongKang Corporation คัดสรรเครื่องประดับและของตกแต่งสุดน่ารัก สไตล์พาสเทล เรียบหรู ดูดี เหมาะกับทุกโอกาส<br>
+                เราใส่ใจในรายละเอียดทุกชิ้น เพื่อให้คุณมั่นใจในคุณภาพและความสวยงาม
+            </div>
+        </div>
+    </div>
+    <!-- CATALOG SECTION -->
+    <div class="catalog-section" id="catalog">
+        <div class="catalog-menu">
+            <div class="catalog-menu-title">หมวดหมู่</div>
+            <button class="catalog-menu-btn active" onclick="showCategory('necklace', event)">สร้อย</button>
+            <button class="catalog-menu-btn" onclick="showCategory('phone', event)">ที่ห้อยโทรศัพท์</button>
+        </div>
+        <div class="catalog-products" id="catalogProducts">
+            <!-- Product detail card will be rendered here -->
+        </div>
+    </div>
+    <div class="product-showcase-section" style="max-width:1200px;margin:56px auto 0 auto;">
+        <!-- สินค้าแนะนำ -->
+        <div class="showcase-title">สินค้าแนะนำ</div>
+        <div class="product-grid">
+            <!-- สินค้าแนะนำ -->
+            <div class="product-card highlight">
+                <div class="badge badge-recommend">แนะนำ</div>
+                <img src="image/D1.JPG" alt="สร้อยไข่มุกน้ำจืดแท้">
+                <div class="product-name">สร้อยไข่มุกน้ำจืดแท้</div>
+                <div class="product-price">590 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยไข่มุกน้ำจืดแท้')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D10.jpg" alt="ที่ห้อยโทรศัพท์ลูกปัด">
+                <div class="product-name">ที่ห้อยโทรศัพท์ลูกปัด</div>
+                <div class="product-price">99 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('ที่ห้อยโทรศัพท์ลูกปัด')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D2.jpg" alt="สร้อยเงินแท้ 92.5%">
+                <div class="product-name">สร้อยเงินแท้ 92.5%</div>
+                <div class="product-price">450 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยเงินแท้ 92.5%')">ดูรายละเอียด</button>
+            </div>
+        </div>
+        <!-- สินค้ายอดนิยม -->
+        <div class="showcase-title" style="margin-top:40px;">สินค้ายอดนิยม</div>
+        <div class="product-grid">
+            <div class="product-card highlight">
+                <div class="badge badge-hit">ฮิต</div>
+                <img src="image/D4.jpg" alt="สร้อยจี้หัวใจ">
+                <div class="product-name">สร้อยจี้หัวใจ</div>
+                <div class="product-price">350 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยจี้หัวใจ')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D11.jpg" alt="ที่ห้อยโทรศัพท์สายหนัง">
+                <div class="product-name">ที่ห้อยโทรศัพท์สายหนัง</div>
+                <div class="product-price">150 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('ที่ห้อยโทรศัพท์สายหนัง')">ดูรายละเอียด</button>
+            </div>
+            <div class="product-card">
+                <img src="image/D6.JPG" alt="สร้อยจี้ดาวเงิน">
+                <div class="product-name">สร้อยจี้ดาวเงิน</div>
+                <div class="product-price">320 บาท</div>
+                <button class="btn-buy" onclick="showProductDetail('สร้อยจี้ดาวเงิน')">ดูรายละเอียด</button>
+            </div>
+        </div>
+    </div>
+    <!-- POPUP CART MODAL -->
+<div id="cartModal" class="cart-modal-bg" style="display:none;">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <span>ตะกร้าสินค้า</span>
+      <button class="cart-modal-close" onclick="closeCartModal()">×</button>
+    </div>
+    <div class="cart-modal-body" id="cartModalBody"></div>
+    <div class="cart-modal-footer">
+      <button class="btn-main" onclick="goToCheckout()">ชำระเงิน</button>
+      <button class="btn-cancel" onclick="closeCartModal()">ปิด</button>
+    </div>
+  </div>
+</div>
+<script>
+    // --- DATA ---
+    const allProducts = [
+        // สร้อย
+        {
+            name: "สร้อยไข่มุกน้ำจืดแท้",
+            desc: "สร้อยไข่มุกน้ำจืดแท้ สีขาวเงางาม ดีไซน์เรียบหรู ใส่ได้ทุกโอกาส",
+            price: 590,
+            img: "image/D1.JPG",
+            colors: ["#fff", "#f7cac9", "#e7bfa7"],
+            category: "necklace",
+            related: ["สร้อยเงินแท้ 92.5%", "สร้อยจี้หัวใจ"]
+        },
+        {
+            name: "สร้อยเงินแท้ 92.5%",
+            desc: "สร้อยเงินแท้ 92.5% ดีไซน์เรียบง่าย เหมาะกับทุกสไตล์",
+            price: 450,
+            img: "image/D2.jpg",
+            colors: ["#e7bfa7", "#fff"],
+            category: "necklace",
+            related: ["สร้อยไข่มุกน้ำจืดแท้", "สร้อยจี้ดาวเงิน"]
+        },
+        {
+            name: "สร้อยจี้หัวใจ",
+            desc: "สร้อยพร้อมจี้หัวใจสีทอง เหมาะเป็นของขวัญให้คนพิเศษ",
+            price: 350,
+            img: "image/D4.jpg",
+            colors: ["#f7cac9", "#fff6f9"],
+            category: "necklace",
+            related: ["สร้อยไข่มุกน้ำจืดแท้", "สร้อยเงินแท้ 92.5%"]
+        },
+        {
+            name: "สร้อยจี้ดาวเงิน",
+            desc: "สร้อยพร้อมจี้รูปดาวเงิน เพิ่มเสน่ห์ให้กับผู้สวมใส่",
+            price: 320,
+            img: "image/D6.JPG",
+            colors: ["#fff", "#e7bfa7"],
+            category: "necklace",
+            related: ["สร้อยเงินแท้ 92.5%", "สร้อยจี้หัวใจ"]
+        },
+        // ที่ห้อยโทรศัพท์
+        {
+            name: "ที่ห้อยโทรศัพท์ลูกปัด",
+            desc: "ที่ห้อยโทรศัพท์ลูกปัดสีพาสเทลสดใส น่ารัก",
+            price: 99,
+            img: "image/D10.jpg",
+            colors: ["#f7cac9", "#fff6f9", "#e7bfa7"],
+            category: "phone",
+            related: ["ที่ห้อยโทรศัพท์สายหนัง", "ที่ห้อยโทรศัพท์ลายการ์ตูน"]
+        },
+        {
+            name: "ที่ห้อยโทรศัพท์สายหนัง",
+            desc: "ที่ห้อยโทรศัพท์สายหนังแท้ ทนทาน",
+            price: 150,
+            img: "image/D11.jpg",
+            colors: ["#e7bfa7", "#fff"],
+            category: "phone",
+            related: ["ที่ห้อยโทรศัพท์ลูกปัด", "ที่ห้อยโทรศัพท์ลายการ์ตูน"]
+        },
+        {
+            name: "ที่ห้อยโทรศัพท์ลายการ์ตูน",
+            desc: "ที่ห้อยโทรศัพท์ลายการ์ตูนสุดคิ้วท์",
+            price: 120,
+            img: "D12.jpg",
+            colors: ["#f7cac9", "#fff6f9"],
+            category: "phone",
+            related: ["ที่ห้อยโทรศัพท์ลูกปัด", "ที่ห้อยโทรศัพท์สายหนัง"]
+        }
+    ];
+
+    let currentCategory = "necklace";
+    let currentProduct = null;
+
+    function showCategory(cat, e) {
+        if (e) {
+            document.querySelectorAll('.catalog-menu-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+        }
+        currentCategory = cat;
+        // แสดงสินค้าชิ้นแรกในหมวด
+        const first = allProducts.find(p => p.category === cat);
+        if (first) showProductDetail(first.name);
+    }
+
+    function showProductDetail(name) {
+        const product = allProducts.find(p => p.name === name);
+        if (!product) return;
+        currentProduct = product;
+        let colorOptions = '';
+        product.colors.forEach((c, i) => {
+            colorOptions += `<span class="color-option${i===0?' selected':''}" style="background:${c}" onclick="selectColor(this)"></span>`;
+        });
+        let relatedHtml = '';
+        if (product.related && product.related.length) {
+            relatedHtml = `<div class="related-products">
+                <div class="related-title">สินค้าที่เกี่ยวข้อง</div>
+                <div class="related-list">
+                    ${product.related.map(rn => {
+                        const rp = allProducts.find(p => p.name === rn);
+                        return rp ? `<div class="related-card" onclick="showProductDetail('${rp.name}')">
+                            <img src="${rp.img}" alt="${rp.name}">
+                            ${rp.name}
+                        </div>` : '';
+                    }).join('')}
+                </div>
+            </div>`;
+        }
+        // ตัวอย่างรีวิว
+    let reviews = [
+        { name: "Nina", text: "สินค้าน่ารักมาก ส่งไว คุณภาพดี!", rating: 5 },
+        { name: "Ploy", text: "สีสวยตรงปก ใส่แล้วดูดีค่ะ", rating: 4 },
+        { name: "Mint", text: "แพ็คของดีมาก ประทับใจ", rating: 5 }
+    ];
+    let reviewHtml = `<div style="margin:18px 0 0 0;">
+        <div style="font-weight:600;color:#e7bfa7;margin-bottom:8px;">รีวิวจากลูกค้า</div>
+        ${reviews.map(r=>`
+            <div style="background:#fff6f9;border-radius:12px;padding:10px 14px;margin-bottom:8px;box-shadow:0 1px 6px #fbeee633;">
+                <span style="color:#fbbf24;font-size:1.1em;">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+                <span style="font-weight:500;color:#a67c52;">${r.name}</span>
+                <div style="color:#b48c7d;font-size:0.98em;">${r.text}</div>
+            </div>
+        `).join('')}
+    </div>`;
+        document.getElementById('catalogProducts').innerHTML = `
+            <div class="product-detail-card">
+                <img src="${product.img}" class="product-detail-img" alt="${product.name}">
+                <div class="product-detail-info">
+                    <div class="product-detail-name">${product.name}</div>
+                    <div class="product-detail-desc">${product.desc}</div>
+                    <div class="product-detail-price">${product.price} บาท</div>
+                    <div class="product-detail-options">
+                        <div>
+                            <span style="font-weight:600;">เลือกสี:</span>
+                            ${colorOptions}
+                        </div>
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="changeQty(-1)" type="button">-</button>
+                            <input type="number" class="qty-input" id="qtyInput" value="1" min="1">
+                            <button class="qty-btn" onclick="changeQty(1)" type="button">+</button>
+                        </div>
+                    </div>
+                    <div class="product-detail-actions">
+                        <button class="btn-main" onclick="addToCartDetail()">เพิ่มเข้าตะกร้า</button>
+                        <button class="btn-main" onclick="buyNowDetail()">สั่งซื้อ</button>
+                    </div>
+                    ${reviewHtml}
+                    ${relatedHtml}
+                </div>
+            </div>
+        `;
+    }
+
+    function selectColor(el) {
+        document.querySelectorAll('.color-option').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+    function changeQty(delta) {
+        const input = document.getElementById('qtyInput');
+        let val = parseInt(input.value) || 1;
+        val += delta;
+        if (val < 1) val = 1;
+        input.value = val;
+    }
+
+    // ตะกร้าสินค้า (localStorage)
+    function getCart() {
+        try {
+            return JSON.parse(localStorage.getItem('cart') || '[]');
+        } catch { return []; }
+    }
+    function setCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function addToCartDetail() {
+        if (!currentProduct) return;
+        const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+        let cart = getCart();
+        // เช็คสินค้าที่มีอยู่ในตะกร้า
+        const existing = cart.find(item => item.name === currentProduct.name);
+        if (existing) {
+            // ถ้ามีอยู่แล้ว ให้เพิ่มจำนวน
+            existing.qty += qty;
+        } else {
+            // ถ้ายังไม่มี ให้เพิ่มสินค้าลงไปในตะกร้า
+            cart.push({ ...currentProduct, qty });
+        }
+        setCart(cart);
+        alert('เพิ่มสินค้าลงในตะกร้าเรียบร้อยแล้ว');
+    }
+    function buyNowDetail() {
+        if (!currentProduct) return;
+        const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+        let cart = getCart();
+        // เช็คสินค้าที่มีอยู่ในตะกร้า
+        const existing = cart.find(item => item.name === currentProduct.name);
+        if (existing) {
+            // ถ้ามีอยู่แล้ว ให้เพิ่มจำนวน
+            existing.qty += qty;
+        } else {
+            // ถ้ายังไม่มี ให้เพิ่มสินค้าลงไปในตะกร้า
+            cart.push({ ...currentProduct, qty });
+        }
+        setCart(cart);
+        // เปลี่ยนเส้นทางไปยังหน้าชำระเงิน (checkout)
+        window.location.href = 'checkout.html';
+    }
+
+    // POPUP CART
+function openCartModal() {
+    renderCartModal();
+    document.getElementById('cartModal').style.display = 'flex';
+}
+function closeCartModal() {
+    document.getElementById('cartModal').style.display = 'none';
+}
+function renderCartModal() {
+    const cart = getCart();
+    const body = document.getElementById('cartModalBody');
+    if (!cart.length) {
+        body.innerHTML = '<div style="text-align:center;color:#aaa;padding:48px 0;">ไม่มีสินค้าในตะกร้า</div>';
+        return;
+    }
+    let html = '';
+    let total = 0;
+    cart.forEach(item => {
+        const sum = item.price * item.qty;
+        total += sum;
+        html += `
+        <div class="cart-modal-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="cart-modal-item-info">
+                <div class="cart-modal-item-name">${item.name}</div>
+                <div class="cart-modal-item-price">${item.price} บาท</div>
+                <div class="cart-modal-item-qty">จำนวน: ${item.qty}</div>
+            </div>
+        </div>`;
+    });
+    html += `<div class="cart-modal-total">รวมทั้งหมด: ${total} บาท</div>`;
+    body.innerHTML = html;
+}
+function goToCheckout() {
+    closeCartModal();
+    window.location.href = "Checkout.html"; // เปลี่ยนจาก Bug.html เป็น Checkout.html
+}
+// เชื่อมเมนูตะกร้าสินค้า
+document.querySelectorAll('.cart-link').forEach(el => {
+    el.onclick = function(e) { e.preventDefault(); openCartModal(); };
+});
+    // แสดงสินค้าชิ้นแรกในหมวดหมู่เริ่มต้น
+    showCategory(currentCategory);
+    </script>
+
+    <footer id="footer" class="padding-large">
+    <div class="container">
+      <div class="row">
+        <div class="footer-top-area">
+          <div class="row d-flex flex-wrap justify-content-between">
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu">
+                <img src="images/main-logo.png" alt="logo" class="img-fluid mb-2" style="width: 150px;">
+                <p>Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa volutpat aenean odio
+                  erat nullam fringilla.</p>
+                <div class="social-links">
+                  <ul class="d-flex list-unstyled">
+                    <li>
+                      <a href="#">
+                        <svg class="facebook">
+                          <use xlink:href="#facebook" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="instagram">
+                          <use xlink:href="#instagram" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="twitter">
+                          <use xlink:href="#twitter" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="linkedin">
+                          <use xlink:href="#linkedin" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="youtube">
+                          <use xlink:href="#youtube" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-capitalize">
+                <h5 class="widget-title pb-2">Quick Links</h5>
+                <ul class="menu-list list-unstyled text-capitalize">
+                  <li class="menu-item mb-1">
+                    <a href="#">Home</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">About</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Shop</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Blogs</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu text-capitalize">
+                <h5 class="widget-title pb-2">Help & Info Help</h5>
+                <ul class="menu-list list-unstyled">
+                  <li class="menu-item mb-1">
+                    <a href="#">Track Your Order</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Returns Policies</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Shipping + Delivery</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Contact Us</a>
+                  </li>
+                  <li class="menu-item mb-1">
+                    <a href="#">Faqs</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu contact-item">
+                <h5 class="widget-title text-capitalize pb-2">Contact Us</h5>
+                <p>Do you have any queries or suggestions? <a href="mailto:"
+                    class="text-decoration-underline">yourinfo@gmail.com</a></p>
+                <p>If you need support? Just give us a call. <a href="#" class="text-decoration-underline">+55 111 222
+                    333 44</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <hr>
+  <div id="footer-bottom" class="mb-2">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="ship-and-payment d-flex gap-md-5 flex-wrap">
+          <div class="shipping d-flex">
+            <p>We ship with:</p>
+            <div class="card-wrap ps-2">
+              <img src="images/dhl.png" alt="visa">
+              <img src="images/shippingcard.png" alt="mastercard">
+            </div>
+          </div>
+          <div class="payment-method d-flex">
+            <p>Payment options:</p>
+            <div class="card-wrap ps-2">
+              <img src="images/visa.jpg" alt="visa">
+              <img src="images/mastercard.jpg" alt="mastercard">
+              <img src="images/paypal.jpg" alt="paypal">
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>© Copyright 2024 Bookly. HTML Template by <a href="https://templatesjungle.com/"
+              target="_blank">TemplatesJungle</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
